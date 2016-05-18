@@ -1,0 +1,25 @@
+{
+    "ecmaFeatures": {
+        "modules": true
+    },
+    "env": {
+        "browser": true,
+        "node": true
+    },
+    "parser": "babel-eslint",
+    "rules": {
+        "quotes": [2, "single"],
+        "strict": [2, "never"],
+        "semi": [2, "always"],
+        "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
+        "no-redeclare": [2, {"builtinGlobals": true}],
+        "no-console": 2,
+        "babel/generator-star-spacing": 1,
+        "babel/new-cap": 1,
+        "babel/object-shorthand": 1,
+        "babel/no-await-in-loop": 1
+    },
+    "plugins": [
+        "babel"
+    ]
+}
