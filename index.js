@@ -1,20 +1,16 @@
 function createAudioContext() {
-
 	let context = new (window.AudioContext || window.webkitAudioContext)();
-
 	if(context.sampleRate != 44100) {
 		if(context.close) {
 			context.close();
 		}
 		context = new (window.AudioContext || window.webkitAudioContext)();
-	}
-		
+	}		
 	return context;
 }
 
 function WebAudio() {
 	let context, source, gain, analyser, array;
-	let time;
 
 	this.create = (size = 300) => {
 		context = createAudioContext();
@@ -27,8 +23,6 @@ function WebAudio() {
 		analyser.connect(context.destination);
 
 		array = new Uint8Array(size);
-
-		console.log('created');
 	};
 
 	this.load = (src, onended = null) => {
@@ -40,33 +34,43 @@ function WebAudio() {
 				source.buffer = buffer;
 				source.onended = onended;
 				source.start(0, 0);
-				console.log('loaded');
 			});
 		};
 		request.send();
 	};
 
 	this.pause = () => {
-		source.disconnect();
-		source.onended = null;
-		console.log(source.buffer);
+		// source.disconnect();
+		context.suspend();
 	};
 
 	this.resume = () => {
+		context.resume();
 		// const tmpBuffer = source.buffer;
-		// source.
+		// const tmpOnended = source.onended;
+
+		// source = context.createBufferSource();
+		// source.connect(gain);
+		// source.buffer = tmpBuffer;
+		// source.onended = tmpOnended;
+
+		// source.start(0, 0);
 	};
 
-	this.seek = value => {
-		if(value.indexOf('%') > -1) {
+	this.getDuration = () => source.buffer.duration;
 
-		} else {
+	this.getCurrentTime = () => {
 
-		}
 	};
 
-	this.setVolume = value => {
-		gain.gain.value = value;
+	this.setCurrentTime = time => {
+
+	};
+
+	this.getVolume = () => gain.gain.value;
+
+	this.setVolume = volume => {
+		gain.gain.value = volume;
 	};
 
 	this.getFreqData = () => {
@@ -84,26 +88,12 @@ function WebAudio() {
 
 let webAudio = new WebAudio();
 webAudio.create();
+// webAudio.load('sample.mp3');
+setTimeout(() => {
+	webAudio.pause();
+	setTimeout(() => {
+		webAudio.resume();
+	}, 1000);
+}, 3000);
 
 module.exports = WebAudio;
-
-
-/*
-
-Audio.create() = create context, source, gain and analyser
-
-Audio.load(src) = set source
-
-Audio.pause() = pause
-
-Audio.resume() = resume
-
-Audio.seek(time/percentage) = create source with same buffer, start from time/percentage
-
-Audio.setVolume(int) = set gain
-
-Audio.getFreqData() = return dataArray 
-
-Audio.destroy() = disconnect everything and delete context
-
-*/
