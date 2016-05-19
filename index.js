@@ -16,7 +16,7 @@ function WebAudio(size) {
 	let audioStartTime = 0;
 	let contextStartTime = 0;
 	let volume = 1;
-
+	
 	gain.connect(analyser);
 	analyser.connect(context.destination);
 
