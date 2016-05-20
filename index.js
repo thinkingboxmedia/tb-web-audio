@@ -8,6 +8,7 @@ function WebAudio() {
 	let audioStartTime = 0;
 	let contextStartTime = 0;
 	let volume = 1;
+	let isEnded = false;
 
 	gain.connect(analyser);
 	analyser.connect(context.destination);
@@ -71,6 +72,9 @@ function WebAudio() {
 		if(source == null) {
 			console.error(new Error('Source is not loaded yet.'));
 			return;
+		}
+		if(isEnded) {
+			return source.buffer.duration;	
 		}
 		return (audioStartTime + context.currentTime - contextStartTime) % source.buffer.duration;
 	};
@@ -143,8 +147,14 @@ function WebAudio() {
 		source.connect(gain);
 		source.buffer = buffer;
 		source.loop = loop;
-		source.onended = onended;
+		source.onended = () => {
+			isEnded = true;
+			if(onended) {
+				onended();	
+			}
+		};
 		source.start(0, time);
+		isEnded = false;
 		audioStartTime = time;
 		contextStartTime = context.currentTime;
 	}
