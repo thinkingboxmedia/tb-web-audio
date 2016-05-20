@@ -1,4 +1,4 @@
-import WebAudio from './index';
+import WebAudio from '../index';
 
 const webAudio = new WebAudio(5);
 let interval;

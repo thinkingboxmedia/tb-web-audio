@@ -4,12 +4,10 @@
   "description": "an optimized cross-browser web audio api",
   "author": "Justin Jung",
   "license": "MIT",
-  "main": "bundle.js",
+  "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "build": "npm run lint && npm run build:webpack",
-    "lint": "eslint index.js",
-    "build:webpack": "webpack --config webpack.config.prod.js"
+    "start": "node ./example/server.js",
+    "lint": "eslint index.js"
   },
   "devDependencies": {
     "babel-core": "^6.8.0",

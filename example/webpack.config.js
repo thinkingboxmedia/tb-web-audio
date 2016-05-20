@@ -5,11 +5,11 @@ module.exports = {
     entry: {
         main: [
             'webpack-hot-middleware/client',
-            './example.js'
+            './example/example.js'
         ]
     },
     output: {
-        path: __dirname,
+        path: path.join(__dirname, 'example'),
         filename: 'example.bundle.js',
         publicPath: '/'
     },
@@ -19,7 +19,7 @@ module.exports = {
     ],
     module: {
         loaders: [
-            { test: /\.js/, loader: 'babel', exclude: /node_modules/ }
+            { test: /\.js/, loader: 'babel', query: { presets: [ 'es2015' ] }, exclude: /node_modules/ }
         ]
     }
 };
