@@ -14,7 +14,7 @@ As of May 2016, the module has been tested with the following devices and browse
     * Safari 9.1
     * Firefox 46.0
 * Android 6.0
-    * Default Android Browser    
+    * Default Android Browser
     * Chrome 50.0
 * iOS 9.1, 9.3
     * Default iOS Safari
@@ -29,18 +29,13 @@ npm install tb-web-audio
 ```
 
 ### Example
-```js
-import WebAudio from 'tb-web-audio';
-
-const webAudio = new WebAudio();
-
-webAudio.load('sample.mp3', () => {
-    console.log('audio loaded');
-}, () => {
-    console.log('audio ended');
-}, true, false);
+```sh
+git clone https://github.com/thinkingboxmedia/tb-web-audio.git
+cd tb-web-audio
+npm install
+npm start
 ```
-For more detailed example, please refer to [example.js](example/example.js).
+The example will run at http://localhost:3000. For more detailed example, please refer to [example.js](example/example.js).
 
 ## Methods
 

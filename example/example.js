@@ -1,14 +1,15 @@
 import WebAudio from '../index';
 
-const webAudio = new WebAudio();
 let interval;
+const webAudio = new WebAudio();
+webAudio.setFreqDataLength(10);
 
 document.getElementById('load').onclick = () => {
 	webAudio.load('sample.mp3', () => {
 		document.getElementById('status').innerHTML = 'status: audio loaded';
 	}, () => {
 		document.getElementById('status').innerHTML = 'status: audio ended';
-	}, false);
+	}, false, false);
 };
 
 document.getElementById('play').onclick = () => {
