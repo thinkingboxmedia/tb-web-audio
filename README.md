@@ -1,4 +1,4 @@
-# tb-web-audio
+# tb-web-audio v1.1.0
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
@@ -86,7 +86,7 @@ Returns Uint8Array that contains byte frequency data of the audio.
 
 ### setFreqDataLength(length)
 Sets length of the Uint8Array that contains byte frequency data of the audio.
-* `length` (number) - length of the array. Its value must be between 1 and 1024. The length is set to default of 1024.
+* `length` (number) - length of the array. Its value must be between 1 and 1024. The length is set to 1024 as a default.
 
 ## Tips and tricks
 * The module uses MediaBufferSourceNode to cover as many browsers as possible. There is also MediaElementSourceNode, but it is supported in less browsers.

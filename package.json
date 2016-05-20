@@ -1,7 +1,7 @@
 {
   "name": "tb-web-audio",
-  "version": "1.0.0",
-  "description": "an optimized cross-browser web audio api",
+  "version": "1.1.0",
+  "description": "Simplified Web Audio API with cross-browser support",
   "author": "Justin Jung",
   "license": "MIT",
   "main": "index.js",
