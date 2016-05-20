@@ -1,13 +1,5 @@
 import WebAudio from './index';
 
-function arrayToString(array) {
-	let string = '';
-	for(let i=0; i<array.length; i++) {
-		string += ', ' + array[i];
-	}
-	return string.slice(2);
-}
-
 const webAudio = new WebAudio(5);
 let interval;
 
@@ -50,3 +42,11 @@ document.getElementById('setVol').onclick = () => {
 document.getElementById('setTime').onclick = () => {
 	webAudio.setCurrentTime(10);
 };
+
+function arrayToString(array) {
+	let string = '';
+	for(let i=0; i<array.length; i++) {
+		string += ', ' + array[i];
+	}
+	return string.slice(2);
+}

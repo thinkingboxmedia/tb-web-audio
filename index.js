@@ -21,7 +21,7 @@ function WebAudio(size) {
 	gain.connect(analyser);
 	analyser.connect(context.destination);
 
-	this.load = (src, onload = null, onended = null, autoPlay = true, loop = true) => {
+	this.load = (src, onload = null, onended = null, autoplay = true, loop = true) => {
 		if(!(/(.mp3|.ogg|.wav)/i.test(src))) {
 			const arr = src.split('.').reverse();
 			console.error(new Error('File format \'.' + arr[0] + '\' is not supported. Unable to decode audio data.'));
@@ -42,7 +42,7 @@ function WebAudio(size) {
 						onended = null;
 					}
 					createSource(buffer, loop, onended, 0);
-					if(!autoPlay) {
+					if(!autoplay) {
 						this.pause();
 					}
 					if(isFunction(onload)) {
@@ -95,7 +95,7 @@ function WebAudio(size) {
 		if(time < 0) {
 			time = 0;
 		} else if(time > source.buffer.duration) {
-			time = source.buffer.duration;g
+			time = source.buffer.duration;
 		}
 		const tmpBuffer = source.buffer;
 		const tmpLoop = source.loop;
