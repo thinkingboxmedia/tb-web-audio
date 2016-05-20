@@ -12,32 +12,43 @@ function WebAudio(size) {
 	const gain = context.createGain();
 	const analyser = context.createAnalyser();
 	const array = new Uint8Array(size);
+	const request = new XMLHttpRequest();
 	let source = null;
 	let audioStartTime = 0;
 	let contextStartTime = 0;
 	let volume = 1;
-	
+
 	gain.connect(analyser);
 	analyser.connect(context.destination);
 
-	this.load = (src, autoPlay = true, loop = false, onended = null) => {
-		if(!(/(.m4a|.mp3|.wav|.wma)/i.test(src))) {
+	this.load = (src, onload = null, onended = null, autoPlay = true, loop = true) => {
+		if(!(/(.mp3|.ogg|.wav)/i.test(src))) {
 			const arr = src.split('.').reverse();
 			console.error(new Error('File format \'.' + arr[0] + '\' is not supported. Unable to decode audio data.'));
 			return;
 		}
 		destroySource();
-		const request = new XMLHttpRequest();
+		request.abort();
 		request.open('GET', src, true);
 		request.responseType = 'arraybuffer';
 		request.onload = () => {
 			if(request.response.byteLength === 124) {
 				console.error(new Error('\'' + src + '\' is not found. Unable to decode audio data.'));
+				return;
 			} else {
 				context.decodeAudioData(request.response, buffer => {
+					if(onended != null && !isFunction(onended)) {
+						console.error(new Error('Onended must be a function.'));
+						onended = null;
+					}
 					createSource(buffer, loop, onended, 0);
 					if(!autoPlay) {
 						this.pause();
+					}
+					if(isFunction(onload)) {
+						onload();
+					} else if(onload != null) {
+						console.error(new Error('Onload must be a function.'));
 					}
 				});
 			}
@@ -70,7 +81,7 @@ function WebAudio(size) {
 			console.error(new Error('Source is not loaded yet.'));
 			return;
 		}
-		return audioStartTime + context.currentTime - contextStartTime;
+		return (audioStartTime + context.currentTime - contextStartTime) % source.buffer.duration;
 	};
 
 	this.setCurrentTime = time => {
@@ -81,10 +92,16 @@ function WebAudio(size) {
 			console.error(new Error('Time must be a number.'));
 			return;
 		}
+		if(time < 0) {
+			time = 0;
+		} else if(time > source.buffer.duration) {
+			time = source.buffer.duration;g
+		}
 		const tmpBuffer = source.buffer;
+		const tmpLoop = source.loop;
 		const tmpOnended = source.onended;
 		destroySource();
-		createSource(tmpBuffer, tmpOnended, time);
+		createSource(tmpBuffer, tmpLoop, tmpOnended, time);
 	};
 
 	this.mute = () => {
@@ -102,6 +119,11 @@ function WebAudio(size) {
 			console.error(new Error('Volume must be a number.'));
 			return;
 		}
+		if(value < 0) {
+			value = 0;
+		} else if(value > 100) {
+			value = 100;
+		}
 		volume = value;
 		gain.gain.value = value;
 	};
@@ -109,12 +131,6 @@ function WebAudio(size) {
 	this.getFreqData = () => {
 		analyser.getByteFrequencyData(array);
 		return array;
-	};
-
-	this.destroy = () => {
-		if(context.close) {
-			context.close();
-		}
 	};
 
 	function createAudioContext() {
@@ -144,6 +160,11 @@ function WebAudio(size) {
 			source.disconnect();
 			source.onended = null;
 		}
+	}
+
+	function isFunction(fn) {
+		const getType = {};
+		return (fn && getType.toString.call(fn) === '[object Function]');
 	}
 }
 module.exports = WebAudio;

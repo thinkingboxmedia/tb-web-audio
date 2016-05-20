@@ -5,12 +5,12 @@ module.exports = {
     entry: {
         main: [
             'webpack-hot-middleware/client',
-            './index.js'
+            './example.js'
         ]
     },
     output: {
         path: __dirname,
-        filename: 'bundle.js',
+        filename: 'example.bundle.js',
         publicPath: '/'
     },
     plugins: [
