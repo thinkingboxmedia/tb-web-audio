@@ -42,8 +42,6 @@ webAudio.load('sample.mp3', () => {
 ```
 For more detailed example, please refer to [example.js](example/example.js).
 
-
-
 ## Methods
 
 ### load(src, [onload, onended, autoplay, loop])
@@ -90,15 +88,11 @@ Returns Uint8Array that contains byte frequency data of the audio.
 Sets length of the Uint8Array that contains byte frequency data of the audio.
 * `length` (number) - length of the array. Its value must be between 1 and 1024. The length is set to default of 1024.
 
-
-
 ## Tips and tricks
 * The module uses MediaBufferSourceNode to cover as many browsers as possible. There is also MediaElementSourceNode, but it is supported in less browsers.
 * In iOS, source must be loaded on user triggerd action, such as onClick. Otherwise, the state of AudioContext stays suspended.
 * In iOS Safari, when the instance is created for the first time, the AudioContext has a sample rate of 48000, while loaded audio files have 44100. The unmatching sample rates cause audio to be distorted. If the sample rates don't match, another instance of AudioContext must be created - then it will have matching sample rate. This module handles it for you.
 * Default Android Browser, on the other hand, has sample rate of 48000 for both AudioContext and loaded audio file. Thus it is not required to check for the sample rate.
-
-
 
 ## License
 MIT - refer to [LICENSE](LICENSE).
