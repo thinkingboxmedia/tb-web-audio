@@ -33,13 +33,14 @@ npm install tb-web-audio
 import WebAudio from 'tb-web-audio';
 
 const webAudio = new WebAudio();
+
 webAudio.load('sample.mp3', () => {
     console.log('audio loaded');
 }, () => {
     console.log('audio ended');
 }, true, false);
 ```
-For more detailed example, please refer to [example.js](example.js).
+For more detailed example, please refer to [example.js](example/example.js).
 
 
 ## Methods
@@ -83,6 +84,10 @@ Sets volume of the loaded file.
  
 ### getFreqData()
 Returns Uint8Array that contains byte frequency data of the audio.
+
+### setFreqDataLength(length)
+Sets length of the Uint8Array that contains byte frequency data of the audio.
+* `length` (number) - length of the array. Its value must be between 1 and 1024. The length is set to default of 1024.
 
 
 ## Tips and tricks

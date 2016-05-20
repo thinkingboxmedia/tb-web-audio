@@ -1,6 +1,6 @@
 import WebAudio from '../index';
 
-const webAudio = new WebAudio(5);
+const webAudio = new WebAudio();
 let interval;
 
 document.getElementById('load').onclick = () => {

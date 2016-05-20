@@ -1,18 +1,9 @@
-function WebAudio(size) {
-	size = size || 300;
-	if(typeof size != 'number') {
-		console.error(new TypeError('Size must be a number. Default size of 300 is used instead.'));
-		size = 300;
-	} else if(size < 1 || size > 1000000) {
-		console.error(new RangeError('Size must be between 1 and 1000000. Default size of 300 is used instead.'));
-		size = 300;
-	}
-
+function WebAudio() {
 	const context = createAudioContext();
 	const gain = context.createGain();
 	const analyser = context.createAnalyser();
-	const array = new Uint8Array(size);
 	const request = new XMLHttpRequest();
+	let array = new Uint8Array(1024);
 	let source = null;
 	let audioStartTime = 0;
 	let contextStartTime = 0;
@@ -119,18 +110,21 @@ function WebAudio(size) {
 			console.error(new Error('Volume must be a number.'));
 			return;
 		}
-		if(value < 0) {
-			value = 0;
-		} else if(value > 100) {
-			value = 100;
-		}
-		volume = value;
-		gain.gain.value = value;
+		volume = Math.min(Math.max(0, value), 100);
+		gain.gain.value = volume;
 	};
 
 	this.getFreqData = () => {
 		analyser.getByteFrequencyData(array);
 		return array;
+	};
+
+	this.setFreqDataLength = length => {
+		if(typeof length != 'number') {
+			console.error(new TypeError('Length must be a number.'));
+			return;
+		}
+		array = new Uint8Array(Math.min(Math.max(1, length), 1024));	
 	};
 
 	function createAudioContext() {
