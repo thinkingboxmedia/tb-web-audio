@@ -6,7 +6,7 @@ webAudio.setFreqDataLength(10);
 
 document.getElementById('load').onclick = () => {
 	webAudio.load('sample.mp3', () => {
-		document.getElementById('status').innerHTML = 'status: audio loaded (autoplay: false, loop: false)';
+		document.getElementById('status').innerHTML = 'status: audio loaded';
 	}, () => {
 		document.getElementById('status').innerHTML = 'status: audio ended';
 	}, false, false);

@@ -90,4 +90,4 @@ Sets length of the Uint8Array that contains byte frequency data of the audio.
 * Default Android Browser, on the other hand, has sample rate of 48000 for both AudioContext and loaded audio file. Thus it is not required to check for the sample rate.
 
 ## License
-MIT - refer to [LICENSE](LICENSE).
+MIT - please refer to [LICENSE](LICENSE).
