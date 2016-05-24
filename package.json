@@ -25,10 +25,10 @@
   "keywords": [
     "thinkingbox",
     "tb",
-    "web",
     "audio",
-    "webaudio",
-    "webaudioapi"
+    "web audio",
+    "web audio api",
+    "audio visualization"
   ],
   "homepage": "https://github.com/thinkingboxmedia/tb-web-audio",
   "repository": {
