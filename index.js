@@ -34,7 +34,9 @@ function WebAudio() {
 						onended = null;
 					}
 					createSource(buffer, loop, onended, 0);
-					if(!autoplay) {
+					if(autoplay) {
+						this.play();
+					} else {
 						this.pause();
 					}
 					if(isFunction(onload)) {
