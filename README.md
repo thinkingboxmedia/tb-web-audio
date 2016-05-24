@@ -1,6 +1,4 @@
-# tb-web-audio
-
-[![npm status](http://img.shields.io/npm/v/tb-web-audio.svg)](https://www.npmjs.org/package/tb-web-audio)
+# tb-web-audio [![npm status](http://img.shields.io/npm/v/tb-web-audio.svg)](https://www.npmjs.org/package/tb-web-audio)
 
 Simplified Web Audio API with cross-browser support. This module is optimized to be used in any web project for:
 * Custom sound track
