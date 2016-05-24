@@ -2,7 +2,7 @@
 
 [![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
 
-Simplified Web Audio API with cross-browser support. In any web project, this module is optimized for:
+Simplified Web Audio API with cross-browser support. This module is optimized to be used in any web project for:
 * Custom sound track
 * Custom audio player
 * Audio visualization
