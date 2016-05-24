@@ -1,6 +1,6 @@
-# tb-web-audio [![npm package][npm-badge]][npm]
+# tb-web-audio
 
-[![experimental](http://badges.github.io/stability-badges/dist/experimental.svg)](http://github.com/badges/stability-badges)
+[![npm status](http://img.shields.io/npm/v/badgify.svg)](https://www.npmjs.org/package/badgify)
 
 Simplified Web Audio API with cross-browser support. This module is optimized to be used in any web project for:
 * Custom sound track
