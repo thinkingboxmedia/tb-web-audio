@@ -1,4 +1,5 @@
-# tb-web-audio [![npm version][npm-img]][npm-url] [![downloads][downloads-img]][downloads-url] [![build status][travis-img]][travis-url]
+# tb-web-audio
+[![npm version][npm-img]][npm-url] [![downloads][downloads-img]][downloads-url] [![build status][travis-img]][travis-url]
 
 Simplified Web Audio API with cross-browser support. This module is optimized to be used in any web project for:
 * Custom sound track
