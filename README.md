@@ -78,11 +78,11 @@ Sets volume of the loaded file.
 * `value` (number) - volume of the audio. The value must be between 0 and 100.
 
 ### fadeIn(time)
-Slowly increase the volume to create a fade in effect.
+Slowly increases the volume to create a fade in effect.
 * `time` (number) - time span for fade in effect. It is in milliseconds.
 
 ### fadeOut(time)
-Slowly decrease the volume to create a fade out effect.
+Slowly decreases the volume to create a fade out effect.
 * `time` (number) - time span for fade out effect. It is in milliseconds.
  
 ### getFreqData()
