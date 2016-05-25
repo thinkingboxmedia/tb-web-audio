@@ -14,11 +14,12 @@ document.getElementById('load').onclick = () => {
 
 document.getElementById('play').onclick = () => {
 	webAudio.play();
+	clearInterval(interval);
 	interval = setInterval(() => {
 		document.getElementById('volume').innerHTML = 'volume: ' + webAudio.getVolume();
 		document.getElementById('data').innerHTML = 'freqData: ' + arrayToString(webAudio.getFreqData());
 		document.getElementById('time').innerHTML = 'currentTime: ' + webAudio.getCurrentTime();
-	}, 750);
+	}, 100);
 	document.getElementById('status').innerHTML = 'status: audio playing';
 };
 
@@ -34,6 +35,20 @@ document.getElementById('mute').onclick = () => {
 	} else {
 		webAudio.mute();
 	}
+};
+
+document.getElementById('fadein').onclick = () => {
+	webAudio.fadeIn(1000);
+	clearInterval(interval);
+	interval = setInterval(() => {
+		document.getElementById('volume').innerHTML = 'volume: ' + webAudio.getVolume();
+		document.getElementById('data').innerHTML = 'freqData: ' + arrayToString(webAudio.getFreqData());
+		document.getElementById('time').innerHTML = 'currentTime: ' + webAudio.getCurrentTime();
+	}, 100);
+};
+
+document.getElementById('fadeout').onclick = () => {
+	webAudio.fadeOut(1000, false);
 };
 
 document.getElementById('setVol').onclick = () => {

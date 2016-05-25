@@ -135,6 +135,7 @@ function WebAudio() {
 
 	this.fadeIn = function(time) {
 		this.play();
+		gain.gain.value = 0;
 		var stepVolume = volume / time * 100;
 		var fadeInInterval = setInterval(function() {
 			gain.gain.value = roundToDec(gain.gain.value + stepVolume, 2);
