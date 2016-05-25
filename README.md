@@ -52,7 +52,7 @@ Plays the loaded file. If the file is already playing, no action is taken.
 Pauses the loaded file. If the file is already paused, no action is taken.
 
 ### isPlaying()
-Returns true if playing and false if paused.
+Returns `true` if playing and `false` if paused.
 
 ### getDuration()
 Returns total duration of the loaded file in seconds.
@@ -81,9 +81,10 @@ Sets volume of the loaded file.
 Slowly increases the volume to create a fade in effect.
 * `time` (number) - time span for fade in effect. It is in milliseconds.
 
-### fadeOut(time)
+### fadeOut(time, [pause])
 Slowly decreases the volume to create a fade out effect.
 * `time` (number) - time span for fade out effect. It is in milliseconds.
+* `pause` (boolean) - option to pause the audio after faded out. Default is `true`.
  
 ### getFreqData()
 Returns Uint8Array that contains byte frequency data of the audio.
