@@ -14,16 +14,17 @@ function WebAudio() {
 	analyser.connect(context.destination);
 
 	this.load = function(src, onload, onended, autoplay, loop) {
-		onload = onload || null;
-		onended = onended || null;
-		autoplay = autoplay || true;
-		loop = loop || true;
-
 		if(!(/(.mp3|.ogg|.wav)/i.test(src))) {
 			var arr = src.split('.').reverse();
 			console.error(new Error('File format \'.' + arr[0] + '\' is not supported. Unable to decode audio data.'));
 			return;
 		}
+
+		onload = onload || null;
+		onended = onended || null;
+		autoplay = (autoplay === undefined) ? true : autoplay;
+		loop = (loop === undefined) ? true : loop;
+
 		this.pause();
 		request.abort();
 		request.open('GET', src, true);
@@ -129,7 +130,34 @@ function WebAudio() {
 			return;
 		}
 		volume = Math.min(Math.max(0, value), 100);
-		gain.gain.value = volume;
+		gain.gain.value = roundToDec(volume, 2);
+	};
+
+	this.fadeIn = function(time) {
+		this.play();
+		var stepVolume = volume / time * 100;
+		var fadeInInterval = setInterval(function() {
+			gain.gain.value = roundToDec(gain.gain.value + stepVolume, 2);
+			if(gain.gain.value >= volume) {
+				gain.gain.value = volume;
+				clearInterval(fadeInInterval);
+			}
+		}, 100);
+	};
+
+	this.fadeOut = function(time, pause) {
+		pause = (pause === undefined) ? true : pause;
+		var stepVolume = gain.gain.value / time * 100;
+		var fadeOutInterval = setInterval(function() {
+			gain.gain.value = roundToDec(gain.gain.value - stepVolume, 2);
+			if(gain.gain.value <= 0) {
+				gain.gain.value = 0;
+				clearInterval(fadeOutInterval);
+				if(pause) {
+					this.pause();
+				}
+			}
+		}.bind(this), 100);
 	};
 
 	this.getFreqData = function() {
@@ -183,6 +211,10 @@ function WebAudio() {
 	function isFunction(fn) {
 		var getType = {};
 		return (fn && getType.toString.call(fn) == '[object Function]');
+	}
+
+	function roundToDec(number, dec) {
+		return Math.round(number * Math.pow(10, dec)) / Math.pow(10, dec);
 	}
 }
 module.exports = WebAudio;
