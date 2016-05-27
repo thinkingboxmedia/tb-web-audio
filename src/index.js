@@ -128,6 +128,10 @@ function WebAudio() {
 	};
 
 	this.fadeIn = time => {
+		if(typeof time != 'number') {
+			console.error(new TypeError('Volume must be a number.'));
+			return;
+		}
 		this.play();
 		gain.gain.value = 0;
 		var stepVolume = volume / time * 100;
@@ -140,15 +144,18 @@ function WebAudio() {
 		}, 100);
 	};
 
-	this.fadeOut = (time, pause) => {
-		pause = (pause === undefined) ? true : pause;
+	this.fadeOut = (time, pause = true) => {
+		if(typeof time != 'number') {
+			console.error(new TypeError('Volume must be a number.'));
+			return;
+		}
 		var stepVolume = gain.gain.value / time * 100;
 		var fadeOutInterval = setInterval(() => {
 			gain.gain.value = roundToDec(gain.gain.value - stepVolume, 2);
 			if(gain.gain.value <= 0) {
 				gain.gain.value = 0;
 				clearInterval(fadeOutInterval);
-				if(pause) {
+				if(pause === true) {
 					this.pause();
 				}
 			}
