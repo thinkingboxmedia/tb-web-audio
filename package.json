@@ -7,7 +7,9 @@
   "main": "index.js",
   "scripts": {
     "start": "node ./example/server.js",
-    "lint": "eslint index.js"
+    "lint": "eslint ./src/index.js",
+    "compile": "babel -d lib/ src/",
+    "prepublish": "npm run lint && npm run compile"
   },
   "devDependencies": {
     "babel-core": "^6.8.0",
