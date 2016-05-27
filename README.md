@@ -23,7 +23,6 @@ As of May 2016, the module has been tested with the following devices and browse
 For overall support, please refer to [Web Audio API](http://caniuse.com/#feat=audio-api).
 
 ### Install
-This module is used with Browserify or Webpack.
 ```sh
 npm install tb-web-audio
 ```
@@ -35,7 +34,7 @@ cd tb-web-audio
 npm install
 npm start
 ```
-The example will run at http://localhost:3000. For more detailed example, please refer to [example.js](example/example.js).
+The example will run at http://localhost:3000. For example code, please refer to [example.js](example/example.js).
 
 ## Methods
 
