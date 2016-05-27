@@ -34,7 +34,7 @@ cd tb-web-audio
 npm install
 npm start
 ```
-The example will run at http://localhost:3000. For example code, please refer to [example.js](example/example.js).
+The example will run at http://localhost:3000. For source code of the example, please refer to [example.js](example/example.js).
 
 ## Methods
 
@@ -80,11 +80,11 @@ Sets volume of the loaded file.
 
 ### fadeIn(time)
 Slowly increases the volume to create a fade in effect.
-* `time` (number) - time span for fade in effect. It is in milliseconds.
+* `time` (number) - time span for fade in effect. Unit is in milliseconds.
 
 ### fadeOut(time, [pause])
 Slowly decreases the volume to create a fade out effect.
-* `time` (number) - time span for fade out effect. It is in milliseconds.
+* `time` (number) - time span for fade out effect. Unit is in milliseconds.
 * `pause` (boolean, optional) - option to pause the audio after faded out. Default is `true`.
  
 ### getFreqData()

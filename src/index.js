@@ -31,7 +31,7 @@ function WebAudio() {
 			} else {
 				context.decodeAudioData(request.response, buffer => {
 					if(onended != null && !isFunction(onended)) {
-						console.error(new Error('Onended must be a function.'));
+						console.error(new TypeError('Onended must be a function.'));
 						onended = null;
 					}
 					destroySource();
@@ -90,7 +90,7 @@ function WebAudio() {
 			console.error(new Error('Source is not loaded yet.'));
 			return;
 		} else if(typeof time != 'number') {
-			console.error(new Error('Time must be a number.'));
+			console.error(new TypeError('Time must be a number.'));
 			return;
 		}
 		if(time < 0) {
@@ -117,10 +117,13 @@ function WebAudio() {
 
 	this.setVolume = value => {
 		if(typeof value != 'number') {
-			console.error(new Error('Volume must be a number.'));
+			console.error(new TypeError('Volume must be a number.'));
+			return;
+		} else if (value < 0 || value > 100) {
+			console.error(new Error('Volume must be between 0 and 100.'));
 			return;
 		}
-		volume = Math.min(Math.max(0, value), 100);
+		volume = value;
 		gain.gain.value = roundToDec(volume, 2);
 	};
 
@@ -161,8 +164,11 @@ function WebAudio() {
 		if(typeof length != 'number') {
 			console.error(new TypeError('Length must be a number.'));
 			return;
+		} else if (length < 1 || length > 1024) {
+			console.error(new Error('Length must be between 1 and 1024.'));
+			return;
 		}
-		array = new Uint8Array(Math.min(Math.max(1, length), 1024));	
+		array = new Uint8Array(length);	
 	};
 
 	function createAudioContext() {
