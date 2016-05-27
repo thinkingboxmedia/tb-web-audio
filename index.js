@@ -14,7 +14,7 @@ function WebAudio() {
 	analyser.connect(context.destination);
 
 	this.load = function(src, onload, onended, autoplay, loop) {
-		if(!(/(.mp3|.ogg|.wav)/i.test(src))) {
+		if(!(/\.(mp3|ogg|wav)/i.test(src))) {
 			var arr = src.split('.').reverse();
 			console.error(new Error('File format \'.' + arr[0] + '\' is not supported. Unable to decode audio data.'));
 			return;

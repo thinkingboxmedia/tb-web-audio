@@ -30,11 +30,11 @@
     "audio api",
     "audio visualization"
   ],
-  "homepage": "https://github.com/thinkingboxmedia/tb-web-audio",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/thinkingboxmedia/tb-web-audio.git"
   },
+  "homepage": "https://github.com/thinkingboxmedia/tb-web-audio",
   "bugs": {
     "url": "https://github.com/thinkingboxmedia/tb-web-audio/issues"
   }
