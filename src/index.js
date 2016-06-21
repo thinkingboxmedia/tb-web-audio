@@ -221,14 +221,6 @@ function WebAudio() {
 	function roundToDec(number, dec) {
 		return Math.round(number * Math.pow(10, dec)) / Math.pow(10, dec);
 	}
-
-	isValid(e, type) {
-		return {}.toString.call(e).toLowerCase().indexOf(type) > -1;
-	}
-
-	throwTypeError(e, type) {
-		console.error(new TypeError('Type of ' + e + ' must be ' + type + '.'));
-	}
 }
 
 module.exports = WebAudio;
