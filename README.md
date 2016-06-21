@@ -1,5 +1,5 @@
 # tb-web-audio
-[![npm version][npm-img]][npm-url] [![downloads][downloads-img]][downloads-url] [![build status][travis-img]][travis-url]
+[![npm version][npm-img]][npm-url] [![build status][travis-img]][travis-url]
 
 Simplified Web Audio API with cross-browser support. This module is optimized to be used in any web project for:
 * Background music
@@ -34,7 +34,7 @@ cd tb-web-audio
 npm install
 npm start
 ```
-The example will run at http://localhost:3000. For source code of the example, please refer to [example.js](example/example.js).
+The example will run at http://localhost:3000. For source code of each example, please refer to [example](./example).
 
 ## Methods
 
@@ -105,7 +105,5 @@ MIT - please refer to [LICENSE](LICENSE).
 
 [npm-url]: https://www.npmjs.org/package/tb-web-audio
 [npm-img]: https://img.shields.io/npm/v/tb-web-audio.svg
-[downloads-url]: https://www.npmjs.org/package/tb-web-audio
-[downloads-img]: https://img.shields.io/npm/dm/tb-web-audio.svg
 [travis-url]: https://travis-ci.org/thinkingboxmedia/tb-web-audio
 [travis-img]: https://travis-ci.org/thinkingboxmedia/tb-web-audio.svg
